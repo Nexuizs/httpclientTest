@@ -68,7 +68,7 @@ public class UseProxy {
         //创建httpGet实例
         HttpGet httpGet = new HttpGet("https://www.tuicool.com/");
         //设置代理IP，设置连接超时时间 、 设置 请求读取数据的超时时间 、 设置从connect Manager获取Connection超时时间、
-        HttpHost proxy = new HttpHost("175.43.58.17",9999);
+        HttpHost proxy = new HttpHost("101.231.104.82",80);
         RequestConfig requestConfig = RequestConfig.custom()
                 .setProxy(proxy)
                 .setConnectTimeout(10000)
