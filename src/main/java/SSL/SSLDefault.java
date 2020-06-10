@@ -59,10 +59,10 @@ public class SSLDefault {
     }
 
     public static void main(String[] args) throws Exception {
-        SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-        sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());
-        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, simpleVerifier);
-        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory).build();
+//        SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
+//        sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());
+//        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, simpleVerifier);
+        CloseableHttpClient httpClient = HttpClients.custom().build();
         try {
 
             HttpGet httpget = new HttpGet("https://github.com/Arronlong/httpclientutil");
@@ -74,6 +74,7 @@ public class SSLDefault {
                 HttpEntity entity = response.getEntity();
                 System.out.println("----------------------------------------");
                 System.out.println(response.getStatusLine());
+                System.out.println(EntityUtils.toString(entity, "utf-8"));
                 EntityUtils.consume(entity);
             } finally {
                 response.close();

@@ -16,7 +16,7 @@ public class ClientExecuteProxy {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
             HttpHost target = new HttpHost("httpbin.org", 443, "https");
-            HttpHost proxy = new HttpHost("127.0.0.1", 8080, "http");
+            HttpHost proxy = new HttpHost("125.118.71.35", 808, "http");
             RequestConfig requestConfig = RequestConfig.custom().setProxy(proxy).build();
             HttpGet httpGet = new HttpGet("/");
             httpGet.setConfig(requestConfig);

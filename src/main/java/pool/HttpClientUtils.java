@@ -54,6 +54,7 @@ public class HttpClientUtils {
 
     public static void main(String[] args) {
         testGet();
+        testPost();
     }
 
     public static synchronized CloseableHttpClient getHttpClient() {
@@ -158,7 +159,7 @@ public class HttpClientUtils {
         }
     }
 
-    public void testPost() {
+    public static void testPost() {
         try {
             //  第一步：创建一个httpClient对象
             CloseableHttpClient httpClient = HttpClientUtils.getHttpClient();

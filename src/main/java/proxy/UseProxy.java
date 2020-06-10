@@ -11,6 +11,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import javax.net.ssl.*;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
@@ -68,7 +70,7 @@ public class UseProxy {
         //创建httpGet实例
         HttpGet httpGet = new HttpGet("https://www.tuicool.com/");
         //设置代理IP，设置连接超时时间 、 设置 请求读取数据的超时时间 、 设置从connect Manager获取Connection超时时间、
-        HttpHost proxy = new HttpHost("101.231.104.82",80);
+        HttpHost proxy = new HttpHost("125.118.71.35",808);
         RequestConfig requestConfig = RequestConfig.custom()
                 .setProxy(proxy)
                 .setConnectTimeout(10000)
@@ -77,9 +79,8 @@ public class UseProxy {
                 .build();
         httpGet.setConfig(requestConfig);
         //设置请求头消息
-        httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36");
+        httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36");
         CloseableHttpResponse response = httpClient.execute(httpGet);
-
         if (response != null){
             HttpEntity entity = response.getEntity();  //获取返回实体
             if (entity != null){
