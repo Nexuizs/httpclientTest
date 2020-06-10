@@ -16,7 +16,7 @@ public class SSLDefault {
 
     private static final SSLHandler simpleVerifier = new SSLHandler();
 
-    private static class SSLHandler implements X509TrustManager, HostnameVerifier{
+    private static class SSLHandler implements X509TrustManager, HostnameVerifier {
 
         /**
          * 在握手期间，如果URL的主机名和服务器的标识主机名不匹配，
@@ -59,9 +59,9 @@ public class SSLDefault {
     }
 
     public static void main(String[] args) throws Exception {
-//        SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-//        sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());
-//        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, simpleVerifier);
+        SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
+        sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());
+        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, simpleVerifier);
         CloseableHttpClient httpClient = HttpClients.custom().build();
         try {
 

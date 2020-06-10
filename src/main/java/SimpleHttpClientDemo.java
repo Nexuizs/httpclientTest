@@ -48,7 +48,7 @@ public class SimpleHttpClientDemo {
     }
 
     public static void main(String[] args) throws ParseException, IOException {
-        String url = "http://www.jd.com/";
+        String url = "https://www.baidu.com/";
         String body = send(url, null, "utf-8");
         System.out.println("交易响应结果：");
         System.out.println(body);
