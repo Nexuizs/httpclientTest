@@ -54,7 +54,7 @@ public class HttpClientUtils {
 
     public static void main(String[] args) {
         testGet();
-        testPost();
+//        testPost();
     }
 
     public static synchronized CloseableHttpClient getHttpClient() {
@@ -99,12 +99,16 @@ public class HttpClientUtils {
                     .build();
             //创建HttpClient
             httpClient = HttpClients.custom()
+                    //如果我们不给httpclient配置指定的连接管理器，在默认情况下，
+                    // httpclient也会自动使用PoolingHttpClientConnectionManager作为连接管理器。
+                    // 但是PoolingHttpClientConnectionManager默认的maxConnPerRoute和maxConnTotal分别是是2和20。
+                    // 也就是对于每个服务器最多只会维护2个连接，看起来有点少。所以，在日常使用时我们尽量使用自己配置的连接管理器比较好。
                     .setConnectionManager(manager)
                     //连接池不是共享模式
                     .setConnectionManagerShared(false)
-                    //定期回收空闲连接
+                    //开启后台线程定期回收空闲连接
                     .evictIdleConnections(60L, TimeUnit.SECONDS)
-                    // 定期回收过期连接
+                    //开启后台线程定期回收过期连接
                     .evictExpiredConnections()
                     //连接存活时间，如果不设置，则根据长连接信息决定
                     .setConnectionTimeToLive(60, TimeUnit.SECONDS)
@@ -149,7 +153,7 @@ public class HttpClientUtils {
             //第七步：接收返回结果。HttpEntity对象。
             HttpEntity entity = response.getEntity();
             //第八步：取响应的内容。
-            String html = EntityUtils.toString(entity);
+            String html = EntityUtils.toString(entity, "utf-8");
             System.out.println(html);
             //第九步：关闭response、HttpClient
             response.close();

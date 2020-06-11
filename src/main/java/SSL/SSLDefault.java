@@ -62,10 +62,10 @@ public class SSLDefault {
         SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
         sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());
         SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, simpleVerifier);
-        CloseableHttpClient httpClient = HttpClients.custom().build();
+        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory).build();
         try {
 
-            HttpGet httpget = new HttpGet("https://github.com/Arronlong/httpclientutil");
+            HttpGet httpget = new HttpGet("https://10.50.31.194/");
 
             System.out.println("Executing request " + httpget.getRequestLine());
 
