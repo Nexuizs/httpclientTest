@@ -60,7 +60,7 @@ public class SSLDefault {
 
     public static void main(String[] args) throws Exception {
         SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-        sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());
+        sslContext.init(null, new TrustManager[]{simpleVerifier}, new java.security.SecureRandom());//此类提供强加密生成器
         SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, simpleVerifier);
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory).build();
         try {
